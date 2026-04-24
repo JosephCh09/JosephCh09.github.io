@@ -127,6 +127,9 @@
 const SUPABASE_URL = 'https://kbrtsqpnfybvsyzjgwmq.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImticnRzcXBuZnlidnN5empnd21xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTcyNjYsImV4cCI6MjA5MjUzMzI2Nn0.TNJb_Js7ZzYAYBEB-CbwIPaW3V2EKpXqNrMndysh0gc';
 
+// Inicializar cliente de Supabase para Realtime
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 async function supabaseGet(table, query = '') {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
     headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
@@ -154,13 +157,10 @@ function renderPendings(containerId, data) {
   });
 }
 
-// ── Turno actual (localStorage) ──────────────────────────────
+// ── Turno actual (localStorage) para detalle por producto y pendientes ──
 function loadDashboard() {
   const raspados = JSON.parse(localStorage.getItem('raspadosPOS'));
   const merch    = JSON.parse(localStorage.getItem('merchPOS'));
-
-  let raspadosTotal = 0;
-  let merchTotal    = 0;
 
   if (merch) {
     document.getElementById('tablitas').innerText = merch.counts.Tablitas || 0;
@@ -168,8 +168,6 @@ function loadDashboard() {
     document.getElementById('poster').innerText   = merch.counts.Poster   || 0;
     document.getElementById('origami').innerText  = merch.counts.Origami  || 0;
     document.getElementById('dibujo').innerText   = merch.counts.Dibujo   || 0;
-    merchTotal = merch.total || 0;
-    document.getElementById('merchTotal').innerText = merchTotal;
     renderPendings('merchPendientes', merch);
   }
 
@@ -178,13 +176,45 @@ function loadDashboard() {
     document.getElementById('durazno').innerText  = raspados.counts.Durazno  || 0;
     document.getElementById('vainilla').innerText = raspados.counts.Vainilla || 0;
     document.getElementById('diablito').innerText = raspados.counts.Diablito || 0;
-    raspadosTotal = raspados.total || 0;
-    document.getElementById('raspadosTotal').innerText = raspadosTotal;
     renderPendings('raspadosPendientes', raspados);
   }
 
-  document.getElementById('grandTotal').innerText = raspadosTotal + merchTotal;
+  // Los totales monetarios ahora vienen de Supabase (tiempo real)
+  // pero dejamos una función que los calcule también desde el localStorage por si acaso.
 }
+
+// ── Totales en tiempo real desde Supabase (ventas del día) ──
+async function cargarTotalesHoy() {
+  const hoy = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const { data, error } = await supabaseClient
+    .from('ventas_realtime')
+    .select('stand, total')
+    .gte('creado_en', hoy);
+
+  if (error) {
+    console.error('Error al cargar totales de hoy:', error);
+    return;
+  }
+
+  const merchTotal = data.filter(v => v.stand === 'merch').reduce((s, v) => s + v.total, 0);
+  const raspadosTotal = data.filter(v => v.stand === 'raspados').reduce((s, v) => s + v.total, 0);
+
+  document.getElementById('merchTotal').innerText = merchTotal;
+  document.getElementById('raspadosTotal').innerText = raspadosTotal;
+  document.getElementById('grandTotal').innerText = merchTotal + raspadosTotal;
+}
+
+// ── Suscripción a cambios en tiempo real ─────────────────────
+supabaseClient
+  .channel('cambios-ventas')
+  .on('postgres_changes',
+    { event: 'INSERT', schema: 'public', table: 'ventas_realtime' },
+    (payload) => {
+      console.log('Nueva venta detectada:', payload.new);
+      cargarTotalesHoy(); // Recalcular totales al instante
+    }
+  )
+  .subscribe();
 
 // ── Histórico (Supabase) ─────────────────────────────────────
 async function loadHistorico() {
@@ -255,11 +285,13 @@ async function loadHistorico() {
   }
 }
 
+// Inicialización
+cargarTotalesHoy();
 loadDashboard();
-setInterval(loadDashboard, 1000);
-
 loadHistorico();
-setInterval(loadHistorico, 10000);
+
+// Actualizar histórico cada 30 segundos
+setInterval(loadHistorico, 30000);
 </script>
 
 </body>

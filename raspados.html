@@ -141,6 +141,23 @@ async function supabasePost(table, body) {
   if (!res.ok) throw new Error(await res.text());
   return res.json();
 }
+
+// ── Registro de venta en tiempo real ─────────────────────────
+async function registrarVenta(producto, precio, cantidad) {
+  const totalVenta = precio * cantidad;
+  try {
+    await supabasePost('ventas_realtime', {
+      stand: 'raspados',
+      producto: producto,
+      precio_unitario: precio,
+      cantidad: cantidad,
+      total: totalVenta
+    });
+    console.log('✅ Venta registrada en Supabase');
+  } catch (err) {
+    console.error('❌ Error al registrar venta en Supabase:', err);
+  }
+}
 // ─────────────────────────────────────────────────────────────
 
 const RESET_PASSWORD  = '1178';
@@ -172,6 +189,10 @@ function confirmarPago() {
   const pending = pendingSales[pendingIndexActivo];
   counts[pending.product] = (counts[pending.product] || 0) + Number(pending.quantity);
   total += Number(pending.price) * Number(pending.quantity);
+  
+  // ── NUEVO: Registrar venta del pendiente en Supabase
+  registrarVenta(pending.product, pending.price, pending.quantity);
+
   pendingSales.splice(pendingIndexActivo, 1);
   cerrarModal('modalPago');
   updateUI();
@@ -207,6 +228,8 @@ function addSale(product, price) {
   total += price;
   updateUI();
   saveData();
+  // ── NUEVO: Enviar venta individual a Supabase
+  registrarVenta(product, price, 1);
 }
 
 function removeSale(product, price) {
