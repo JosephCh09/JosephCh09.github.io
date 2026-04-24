@@ -1,297 +1,173 @@
 <!DOCTYPE html>
 <html lang="es">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>OJN Sinaloa - Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Login</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
 </head>
 
-<body
-  class="min-h-screen bg-cover bg-center bg-fixed text-[#363334]"
-  style="background-image: url('fondo.jpeg');">
+<body class="bg-[#FFFFEB] min-h-screen flex items-center justify-center">
 
-<div class="max-w-md md:max-w-7xl mx-auto px-3 md:px-6 pb-10">
+<div class="bg-white p-10 rounded-3xl shadow-2xl w-[400px]">
 
-  <!-- HEADER -->
-  <div class="sticky top-0 z-50 py-4 mb-6 backdrop-blur-md bg-[#FFFEEB]/85 rounded-b-3xl">
-    <div class="text-center">
-      <h1 class="text-4xl md:text-6xl font-black text-[#8C0D11]">OJN Sinaloa</h1>
-      <p class="text-lg md:text-2xl font-bold">Dashboard General</p>
-      <p class="text-sm md:text-lg text-[#8C0D11]">Sistema de gestión de ventas</p>
-    </div>
-  </div>
+<h1 class="text-4xl font-black text-center text-[#6C1411] mb-8">
 
-  <!-- TURNO ACTUAL -->
-  <div class="grid lg:grid-cols-2 gap-6">
+OJN Sinaloa
 
-    <!-- MERCH (primero) -->
-    <div class="bg-white/95 backdrop-blur-md rounded-[2rem] shadow-2xl p-5 md:p-8 border border-[#8C0D11]/10">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl md:text-4xl font-black text-[#8C0D11]">Merch</h2>
-        <a href="merch.html" class="bg-[#8C0D11] text-white px-4 py-2 rounded-2xl font-bold">Abrir</a>
-      </div>
-      <div class="space-y-3 text-lg md:text-2xl">
-        <div class="flex justify-between"><span>Tablitas</span><span id="tablitas">0</span></div>
-        <div class="flex justify-between"><span>Sticker</span><span id="sticker">0</span></div>
-        <div class="flex justify-between"><span>Poster</span><span id="poster">0</span></div>
-        <div class="flex justify-between"><span>Origami</span><span id="origami">0</span></div>
-        <div class="flex justify-between"><span>Dibujo</span><span id="dibujo">0</span></div>
-      </div>
-      <div class="bg-[#363334] text-white rounded-3xl p-5 mt-8">
-        <div class="flex justify-between items-center">
-          <span class="text-2xl font-bold">Total</span>
-          <span class="text-4xl font-black">$<span id="merchTotal">0</span></span>
-        </div>
-      </div>
-      <div class="mt-8">
-        <h3 class="text-2xl font-black text-[#C11111] mb-4">Pendientes</h3>
-        <div id="merchPendientes" class="space-y-3"></div>
-      </div>
-    </div>
+</h1>
 
-    <!-- RASPADOS (segundo) -->
-    <div class="bg-white/95 backdrop-blur-md rounded-[2rem] shadow-2xl p-5 md:p-8 border border-[#8C0D11]/10">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl md:text-4xl font-black text-[#8C0D11]">Raspados</h2>
-        <a href="raspados.html" class="bg-[#8C0D11] text-white px-4 py-2 rounded-2xl font-bold">Abrir</a>
-      </div>
-      <div class="space-y-3 text-lg md:text-2xl">
-        <div class="flex justify-between"><span>Ciruela</span><span id="ciruela">0</span></div>
-        <div class="flex justify-between"><span>Durazno</span><span id="durazno">0</span></div>
-        <div class="flex justify-between"><span>Vainilla</span><span id="vainilla">0</span></div>
-        <div class="flex justify-between"><span>Diablito</span><span id="diablito">0</span></div>
-      </div>
-      <div class="bg-[#363334] text-white rounded-3xl p-5 mt-8">
-        <div class="flex justify-between items-center">
-          <span class="text-2xl font-bold">Total</span>
-          <span class="text-4xl font-black">$<span id="raspadosTotal">0</span></span>
-        </div>
-      </div>
-      <div class="mt-8">
-        <h3 class="text-2xl font-black text-[#C11111] mb-4">Pendientes</h3>
-        <div id="raspadosPendientes" class="space-y-3"></div>
-      </div>
-    </div>
+<input
 
-  </div>
+id="usuario"
 
-  <!-- TOTAL GENERAL TURNO -->
-  <div class="bg-[#8C0D11] text-white rounded-[2rem] shadow-2xl p-8 mt-8 text-center">
-    <h2 class="text-3xl md:text-5xl font-black mb-4">TOTAL GENERAL</h2>
-    <div class="text-5xl md:text-7xl font-black">$<span id="grandTotal">0</span></div>
-  </div>
+type="text"
 
-  <!-- HISTÓRICO SUPABASE -->
-  <div class="mt-10 mb-4">
-    <h2 class="text-2xl md:text-3xl font-black text-[#363334]">📊 Histórico de sesiones</h2>
-    <p class="text-gray-500 mt-1">Acumulado de todos los turnos registrados</p>
-  </div>
+placeholder="Usuario"
 
-  <div class="grid grid-cols-3 gap-4 mb-6">
-    <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-xl p-5 text-center border border-[#8C0D11]/10">
-      <p class="text-gray-500 text-sm md:text-lg mb-1">Total Merch</p>
-      <p class="text-3xl md:text-4xl font-black text-[#8C0D11]">$<span id="histMerch">-</span></p>
-    </div>
-    <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-xl p-5 text-center border border-[#8C0D11]/10">
-      <p class="text-gray-500 text-sm md:text-lg mb-1">Total Raspados</p>
-      <p class="text-3xl md:text-4xl font-black text-[#8C0D11]">$<span id="histRaspados">-</span></p>
-    </div>
-    <div class="bg-[#363334] text-white rounded-3xl shadow-xl p-5 text-center">
-      <p class="text-gray-400 text-sm md:text-lg mb-1">Gran Total</p>
-      <p class="text-3xl md:text-4xl font-black">$<span id="histGrand">-</span></p>
-    </div>
-  </div>
+class="w-full border p-4 rounded-2xl mb-4">
 
-  <!-- TABLA SESIONES -->
-  <div class="bg-white/95 backdrop-blur-md rounded-[2rem] shadow-2xl p-5 md:p-8 border border-[#8C0D11]/10 mb-6">
-    <h3 class="text-2xl font-black mb-4">Sesiones registradas</h3>
-    <div id="sesionesTable" class="overflow-x-auto">
-      <p class="text-gray-400">Cargando...</p>
-    </div>
-  </div>
+<input
 
-  <!-- PENDIENTES HISTÓRICOS -->
-  <div class="bg-white/95 backdrop-blur-md rounded-[2rem] shadow-2xl p-5 md:p-8 border border-[#8C0D11]/10">
-    <h3 class="text-2xl font-black mb-4 text-[#8C0D11]">⚠️ Pendientes sin pagar (histórico)</h3>
-    <div id="pendientesTable">
-      <p class="text-gray-400">Cargando...</p>
-    </div>
-  </div>
+id="password"
+
+type="password"
+
+placeholder="Contraseña"
+
+class="w-full border p-4 rounded-2xl mb-4">
+
+<button
+
+id="btnLogin"
+
+class="w-full bg-[#C11111] text-white p-4 rounded-2xl font-black">
+
+Ingresar
+
+</button>
+
+<p
+id="error"
+
+class="hidden mt-4 text-red-600 text-center font-bold">
+
+</p>
 
 </div>
 
 <script>
-// ── Supabase ─────────────────────────────────────────────────
-const SUPABASE_URL = 'https://kbrtsqpnfybvsyzjgwmq.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImticnRzcXBuZnlidnN5empnd21xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTcyNjYsImV4cCI6MjA5MjUzMzI2Nn0.TNJb_Js7ZzYAYBEB-CbwIPaW3V2EKpXqNrMndysh0gc';
 
-// Inicializar cliente de Supabase para Realtime
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseUrl =
+'https://ktvneighjktwjffjefbh.supabase.co';
 
-async function supabaseGet(table, query = '') {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
-    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-  });
-  if (!res.ok) throw new Error(await res.text());
-  return res.json();
-}
-// ─────────────────────────────────────────────────────────────
+const supabaseKey =
+'sb_publishable_aOvjgc-i2PXwvO9ISBg0TA_dizK34ZQ';
 
-function renderPendings(containerId, data) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  if (!data.pendingSales || data.pendingSales.length === 0) {
-    container.innerHTML = `<div class="text-gray-500">Sin pendientes</div>`;
-    return;
-  }
-  data.pendingSales.forEach(item => {
-    container.innerHTML += `
-      <div class="bg-[#FFF4F4] border-l-8 border-[#C11111] p-4 rounded-3xl">
-        <div class="font-black text-xl">${item.product}</div>
-        <div>Cliente: <strong>${item.client}</strong></div>
-        <div>Cantidad: ${item.quantity}</div>
-        <div class="font-bold text-[#8C0D11]">Debe: $${item.price * item.quantity}</div>
-      </div>`;
-  });
-}
+const supabaseClient =
+supabase.createClient(
+supabaseUrl,
+supabaseKey
+);
 
-// ── Turno actual (localStorage) para detalle por producto y pendientes ──
-function loadDashboard() {
-  const raspados = JSON.parse(localStorage.getItem('raspadosPOS'));
-  const merch    = JSON.parse(localStorage.getItem('merchPOS'));
+document
+.getElementById('btnLogin')
 
-  if (merch) {
-    document.getElementById('tablitas').innerText = merch.counts.Tablitas || 0;
-    document.getElementById('sticker').innerText  = merch.counts.Sticker  || 0;
-    document.getElementById('poster').innerText   = merch.counts.Poster   || 0;
-    document.getElementById('origami').innerText  = merch.counts.Origami  || 0;
-    document.getElementById('dibujo').innerText   = merch.counts.Dibujo   || 0;
-    renderPendings('merchPendientes', merch);
-  }
+.addEventListener(
+'click',
+login
+);
 
-  if (raspados) {
-    document.getElementById('ciruela').innerText  = raspados.counts.Ciruela  || 0;
-    document.getElementById('durazno').innerText  = raspados.counts.Durazno  || 0;
-    document.getElementById('vainilla').innerText = raspados.counts.Vainilla || 0;
-    document.getElementById('diablito').innerText = raspados.counts.Diablito || 0;
-    renderPendings('raspadosPendientes', raspados);
-  }
+async function login(){
 
-  // Los totales monetarios ahora vienen de Supabase (tiempo real)
-  // pero dejamos una función que los calcule también desde el localStorage por si acaso.
-}
+const usuario =
+document
+.getElementById(
+'usuario'
+)
 
-// ── Totales en tiempo real desde Supabase (ventas del día) ──
-async function cargarTotalesHoy() {
-  const hoy = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-  const { data, error } = await supabaseClient
-    .from('ventas_realtime')
-    .select('stand, total')
-    .gte('creado_en', hoy);
+.value
+.trim();
 
-  if (error) {
-    console.error('Error al cargar totales de hoy:', error);
-    return;
-  }
+const password =
+document
+.getElementById(
+'password'
+)
 
-  const merchTotal = data.filter(v => v.stand === 'merch').reduce((s, v) => s + v.total, 0);
-  const raspadosTotal = data.filter(v => v.stand === 'raspados').reduce((s, v) => s + v.total, 0);
+.value
+.trim();
 
-  document.getElementById('merchTotal').innerText = merchTotal;
-  document.getElementById('raspadosTotal').innerText = raspadosTotal;
-  document.getElementById('grandTotal').innerText = merchTotal + raspadosTotal;
+const { data, error } =
+await supabaseClient
+
+.from('usuarios')
+
+.select('*')
+
+.eq('usuario', usuario)
+
+.eq('password', password);
+
+console.log(data);
+console.log(error);
+
+if(error){
+
+mostrarError(
+'Error conexión'
+);
+
+return;
+
 }
 
-// ── Suscripción a cambios en tiempo real ─────────────────────
-supabaseClient
-  .channel('cambios-ventas')
-  .on('postgres_changes',
-    { event: 'INSERT', schema: 'public', table: 'ventas_realtime' },
-    (payload) => {
-      console.log('Nueva venta detectada:', payload.new);
-      cargarTotalesHoy(); // Recalcular totales al instante
-    }
-  )
-  .subscribe();
+if(data.length === 0){
 
-// ── Histórico (Supabase) ─────────────────────────────────────
-async function loadHistorico() {
-  try {
-    const sesiones = await supabaseGet('sesiones', 'order=fecha_hora.desc');
+mostrarError(
+'Credenciales incorrectas'
+);
 
-    const totalMerch    = sesiones.filter(s => s.stand === 'merch').reduce((s, r) => s + (r.total || 0), 0);
-    const totalRaspados = sesiones.filter(s => s.stand === 'raspados').reduce((s, r) => s + (r.total || 0), 0);
+return;
 
-    document.getElementById('histMerch').innerText    = totalMerch;
-    document.getElementById('histRaspados').innerText = totalRaspados;
-    document.getElementById('histGrand').innerText    = totalMerch + totalRaspados;
-
-    const tablaContainer = document.getElementById('sesionesTable');
-    if (sesiones.length === 0) {
-      tablaContainer.innerHTML = '<p class="text-gray-400">Sin sesiones registradas aún.</p>';
-    } else {
-      tablaContainer.innerHTML = `
-        <table class="w-full text-left text-base md:text-lg">
-          <thead>
-            <tr class="border-b-2 border-gray-200">
-              <th class="py-2 pr-4">Stand</th>
-              <th class="py-2 pr-4">Total</th>
-              <th class="py-2">Fecha y hora</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${sesiones.map(s => `
-              <tr class="border-b border-gray-100">
-                <td class="py-2 pr-4 font-semibold capitalize">${s.stand}</td>
-                <td class="py-2 pr-4 font-bold text-[#8C0D11]">$${s.total}</td>
-                <td class="py-2 text-gray-500">${new Date(s.fecha_hora).toLocaleString('es-MX')}</td>
-              </tr>`).join('')}
-          </tbody>
-        </table>`;
-    }
-
-    const pendientes = await supabaseGet('pendientes_sin_pagar', 'order=id.desc');
-    const pendContainer = document.getElementById('pendientesTable');
-    if (pendientes.length === 0) {
-      pendContainer.innerHTML = '<p class="text-gray-400">Sin pendientes registrados.</p>';
-    } else {
-      pendContainer.innerHTML = `
-        <table class="w-full text-left text-base md:text-lg">
-          <thead>
-            <tr class="border-b-2 border-gray-200">
-              <th class="py-2 pr-4">Cliente</th>
-              <th class="py-2 pr-4">Producto</th>
-              <th class="py-2 pr-4">Cantidad</th>
-              <th class="py-2">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${pendientes.map(p => `
-              <tr class="border-b border-gray-100">
-                <td class="py-2 pr-4 font-semibold">${p.cliente}</td>
-                <td class="py-2 pr-4">${p.producto}</td>
-                <td class="py-2 pr-4">${p.cantidad}</td>
-                <td class="py-2 font-bold text-[#C11111]">$${p.total}</td>
-              </tr>`).join('')}
-          </tbody>
-        </table>`;
-    }
-  } catch (err) {
-    console.error('Error cargando histórico:', err);
-    document.getElementById('sesionesTable').innerHTML   = '<p class="text-red-500">Error al cargar datos.</p>';
-    document.getElementById('pendientesTable').innerHTML = '<p class="text-red-500">Error al cargar pendientes.</p>';
-  }
 }
 
-// Inicialización
-cargarTotalesHoy();
-loadDashboard();
-loadHistorico();
+localStorage.setItem(
 
-// Actualizar histórico cada 30 segundos
-setInterval(loadHistorico, 30000);
+'usuarioActual',
+
+JSON.stringify(data[0])
+
+);
+
+window.location.href =
+'menu.html';
+
+}
+
+function mostrarError(msg){
+
+const error =
+document.getElementById(
+'error'
+);
+
+error.innerText = msg;
+
+error.classList.remove(
+'hidden'
+);
+
+}
+
 </script>
 
 </body>

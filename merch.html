@@ -1,11 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="es">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <title>OJN Sinaloa - Merch</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
 </head>
 
 <body
@@ -15,329 +24,632 @@
 <div class="max-w-md md:max-w-5xl mx-auto px-3 md:px-6 pb-40">
 
   <!-- HEADER -->
+
   <div class="sticky top-0 z-50 py-4 mb-6 backdrop-blur-md bg-[#FFFEEB]/85 rounded-b-3xl">
+
     <div class="text-center">
-      <h1 class="text-4xl md:text-6xl font-black text-[#8C0D11]">OJN Sinaloa</h1>
-      <p class="text-lg md:text-2xl font-bold">Stand Merch</p>
-      <p class="text-sm md:text-lg text-[#8C0D11]">Sistema de gestión de ventas</p>
+
+      <h1 class="text-4xl md:text-6xl font-black text-[#8C0D11]">
+        OJN Sinaloa
+      </h1>
+
+      <p class="text-lg md:text-2xl font-bold">
+        Stand Merch
+      </p>
+
+      <p class="text-sm md:text-lg text-[#8C0D11]">
+        Sistema de gestión de ventas
+      </p>
+
     </div>
+
   </div>
 
   <!-- CARD PRINCIPAL -->
+
   <div class="bg-white/95 backdrop-blur-md rounded-[2rem] shadow-2xl p-4 md:p-8 border border-[#8C0D11]/10">
+
+    <!-- PRODUCTOS -->
 
     <div class="grid md:grid-cols-2 gap-6">
 
-      <div class="bg-[#FFF4F4] p-5 rounded-3xl border border-[#8C0D11]/10">
-        <h2 class="text-2xl md:text-3xl font-black mb-4">Tablitas - $40</h2>
-        <div class="grid grid-cols-3 gap-2">
-          <button onclick="addSale('Tablitas',40)" class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">+</button>
-          <button onclick="removeSale('Tablitas',40)" class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">-</button>
-          <button onclick="addPending('Tablitas',40)" class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">Pendiente</button>
-        </div>
-      </div>
+      <!-- TABLITAS -->
 
       <div class="bg-[#FFF4F4] p-5 rounded-3xl border border-[#8C0D11]/10">
-        <h2 class="text-2xl md:text-3xl font-black mb-4">Sticker - $5</h2>
+
+        <h2 class="text-2xl md:text-3xl font-black mb-4">
+          Tablitas - $40
+        </h2>
+
         <div class="grid grid-cols-3 gap-2">
-          <button onclick="addSale('Sticker',5)" class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">+</button>
-          <button onclick="removeSale('Sticker',5)" class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">-</button>
-          <button onclick="addPending('Sticker',5)" class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">Pendiente</button>
+
+          <button
+            onclick="addSale('Tablitas',40)"
+            class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            +
+
+          </button>
+
+          <button
+            onclick="removeSale('Tablitas',40)"
+            class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            -
+
+          </button>
+
+          <button
+            onclick="addPending('Tablitas',40)"
+            class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">
+
+            Pendiente
+
+          </button>
+
         </div>
+
       </div>
 
-      <div class="bg-[#FFF4F4] p-5 rounded-3xl border border-[#8C0D11]/10">
-        <h2 class="text-2xl md:text-3xl font-black mb-4">Poster - $20</h2>
-        <div class="grid grid-cols-3 gap-2">
-          <button onclick="addSale('Poster',20)" class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">+</button>
-          <button onclick="removeSale('Poster',20)" class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">-</button>
-          <button onclick="addPending('Poster',20)" class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">Pendiente</button>
-        </div>
-      </div>
+      <!-- STICKER -->
 
       <div class="bg-[#FFF4F4] p-5 rounded-3xl border border-[#8C0D11]/10">
-        <h2 class="text-2xl md:text-3xl font-black mb-4">Origami - $5</h2>
+
+        <h2 class="text-2xl md:text-3xl font-black mb-4">
+          Sticker - $5
+        </h2>
+
         <div class="grid grid-cols-3 gap-2">
-          <button onclick="addSale('Origami',5)" class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">+</button>
-          <button onclick="removeSale('Origami',5)" class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">-</button>
-          <button onclick="addPending('Origami',5)" class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">Pendiente</button>
+
+          <button
+            onclick="addSale('Sticker',5)"
+            class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            +
+
+          </button>
+
+          <button
+            onclick="removeSale('Sticker',5)"
+            class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            -
+
+          </button>
+
+          <button
+            onclick="addPending('Sticker',5)"
+            class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">
+
+            Pendiente
+
+          </button>
+
         </div>
+
       </div>
 
+      <!-- POSTER -->
+
       <div class="bg-[#FFF4F4] p-5 rounded-3xl border border-[#8C0D11]/10">
-        <h2 class="text-2xl md:text-3xl font-black mb-4">Dibujo - $5</h2>
+
+        <h2 class="text-2xl md:text-3xl font-black mb-4">
+          Poster - $20
+        </h2>
+
         <div class="grid grid-cols-3 gap-2">
-          <button onclick="addSale('Dibujo',5)" class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">+</button>
-          <button onclick="removeSale('Dibujo',5)" class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">-</button>
-          <button onclick="addPending('Dibujo',5)" class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">Pendiente</button>
+
+          <button
+            onclick="addSale('Poster',20)"
+            class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            +
+
+          </button>
+
+          <button
+            onclick="removeSale('Poster',20)"
+            class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            -
+
+          </button>
+
+          <button
+            onclick="addPending('Poster',20)"
+            class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">
+
+            Pendiente
+
+          </button>
+
         </div>
+
+      </div>
+
+      <!-- ORIGAMI -->
+
+      <div class="bg-[#FFF4F4] p-5 rounded-3xl border border-[#8C0D11]/10">
+
+        <h2 class="text-2xl md:text-3xl font-black mb-4">
+          Origami - $5
+        </h2>
+
+        <div class="grid grid-cols-3 gap-2">
+
+          <button
+            onclick="addSale('Origami',5)"
+            class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            +
+
+          </button>
+
+          <button
+            onclick="removeSale('Origami',5)"
+            class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            -
+
+          </button>
+
+          <button
+            onclick="addPending('Origami',5)"
+            class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">
+
+            Pendiente
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- DIBUJO -->
+
+      <div class="bg-[#FFF4F4] p-5 rounded-3xl border border-[#8C0D11]/10">
+
+        <h2 class="text-2xl md:text-3xl font-black mb-4">
+          Dibujo - $5
+        </h2>
+
+        <div class="grid grid-cols-3 gap-2">
+
+          <button
+            onclick="addSale('Dibujo',5)"
+            class="bg-[#8C0D11] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            +
+
+          </button>
+
+          <button
+            onclick="removeSale('Dibujo',5)"
+            class="bg-[#363334] hover:opacity-90 text-white py-6 rounded-2xl text-xl md:text-2xl font-bold">
+
+            -
+
+          </button>
+
+          <button
+            onclick="addPending('Dibujo',5)"
+            class="bg-[#C11111] hover:opacity-90 text-white py-6 rounded-2xl text-sm md:text-lg font-bold">
+
+            Pendiente
+
+          </button>
+
+        </div>
+
       </div>
 
     </div>
+
+    <!-- RESUMEN -->
 
     <hr class="my-8">
 
     <div class="space-y-3 text-lg md:text-2xl">
-      <div class="flex justify-between"><span>Tablitas</span><span id="tablitas">0</span></div>
-      <div class="flex justify-between"><span>Sticker</span><span id="sticker">0</span></div>
-      <div class="flex justify-between"><span>Poster</span><span id="poster">0</span></div>
-      <div class="flex justify-between"><span>Origami</span><span id="origami">0</span></div>
-      <div class="flex justify-between"><span>Dibujo</span><span id="dibujo">0</span></div>
+
+      <div class="flex justify-between">
+        <span>Tablitas</span>
+        <span id="tablitas">0</span>
+      </div>
+
+      <div class="flex justify-between">
+        <span>Sticker</span>
+        <span id="sticker">0</span>
+      </div>
+
+      <div class="flex justify-between">
+        <span>Poster</span>
+        <span id="poster">0</span>
+      </div>
+
+      <div class="flex justify-between">
+        <span>Origami</span>
+        <span id="origami">0</span>
+      </div>
+
+      <div class="flex justify-between">
+        <span>Dibujo</span>
+        <span id="dibujo">0</span>
+      </div>
+
     </div>
+
+    <!-- PENDIENTES -->
 
     <div class="mt-10">
-      <h2 class="text-3xl md:text-4xl font-black text-[#8C0D11] mb-5">Pendientes</h2>
-      <div id="pendingList" class="space-y-4"></div>
+
+      <h2 class="text-3xl md:text-4xl font-black text-[#8C0D11] mb-5">
+        Pendientes
+      </h2>
+
+      <div id="pendingList" class="space-y-4">
+
+      </div>
+
     </div>
 
-    <button onclick="resetSales()" class="mt-10 w-full bg-[#8C0D11] hover:opacity-90 text-white py-5 rounded-3xl text-xl md:text-2xl font-black">
+    <!-- RESET -->
+
+    <button
+      onclick="resetSales()"
+      class="mt-10 w-full bg-[#8C0D11] hover:opacity-90 text-white py-5 rounded-3xl text-xl md:text-2xl font-black">
+
       Reiniciar Sistema
+
     </button>
 
   </div>
+
 </div>
 
 <!-- TOTAL FIJO -->
+
 <div class="fixed bottom-0 left-0 right-0 z-50 p-3">
+
   <div class="max-w-md md:max-w-5xl mx-auto bg-[#363334] text-white rounded-3xl p-5 shadow-2xl">
+
     <div class="flex justify-between items-center">
-      <span class="text-2xl md:text-3xl font-bold">Total</span>
-      <span class="text-4xl md:text-5xl font-black">$<span id="total">0</span></span>
-    </div>
-  </div>
-</div>
 
-<!-- MODAL: Confirmar pago -->
-<div id="modalPago" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-  <div class="bg-white rounded-[2rem] shadow-2xl p-8 w-full max-w-sm text-center border border-[#8C0D11]/20">
-    <p class="text-2xl font-black mb-2">¿Confirmar pago?</p>
-    <p id="modalPagoInfo" class="text-lg text-gray-500 mb-6"></p>
-    <div class="flex gap-4">
-      <button onclick="confirmarPago()" class="flex-1 bg-[#363334] text-white py-4 rounded-2xl text-xl font-bold">Sí, pagó</button>
-      <button onclick="cerrarModal('modalPago')" class="flex-1 bg-gray-200 text-[#363334] py-4 rounded-2xl text-xl font-bold">No</button>
-    </div>
-  </div>
-</div>
+      <span class="text-2xl md:text-3xl font-bold">
+        Total
+      </span>
 
-<!-- MODAL: Cancelar pendiente -->
-<div id="modalCancelar" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-  <div class="bg-white rounded-[2rem] shadow-2xl p-8 w-full max-w-sm text-center border border-[#8C0D11]/20">
-    <p class="text-2xl font-black mb-2">¿Cancelar pendiente?</p>
-    <p id="modalCancelarInfo" class="text-lg text-gray-500 mb-4"></p>
-    <input id="cancelPassword" type="password" placeholder="Contraseña" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-xl mb-6 text-center focus:outline-none focus:border-[#8C0D11]">
-    <div class="flex gap-4">
-      <button onclick="confirmarCancelar()" class="flex-1 bg-[#8C0D11] text-white py-4 rounded-2xl text-xl font-bold">Cancelar pedido</button>
-      <button onclick="cerrarModal('modalCancelar')" class="flex-1 bg-gray-200 text-[#363334] py-4 rounded-2xl text-xl font-bold">Volver</button>
+      <span class="text-4xl md:text-5xl font-black">
+        $<span id="total">0</span>
+      </span>
+
     </div>
+
   </div>
+
 </div>
 
 <script>
-// ── Supabase ─────────────────────────────────────────────────
-const SUPABASE_URL = 'https://kbrtsqpnfybvsyzjgwmq.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImticnRzcXBuZnlidnN5empnd21xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NTcyNjYsImV4cCI6MjA5MjUzMzI2Nn0.TNJb_Js7ZzYAYBEB-CbwIPaW3V2EKpXqNrMndysh0gc';
+const supabaseUrl =
+'https://ktvneighjktwjffjefbh.supabase.co';
 
-async function supabasePost(table, body) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Prefer': 'return=representation'
-    },
-    body: JSON.stringify(body)
-  });
-  if (!res.ok) throw new Error(await res.text());
-  return res.json();
+const supabaseKey =
+'sb_publishable_aOvjgc-i2PXwvO9ISBg0TA_dizK34ZQ';
+
+const supabaseClient =
+supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
+
+const usuario = JSON.parse(
+
+  localStorage.getItem(
+    "usuarioActual"
+  )
+
+);
+
+if(!usuario){
+
+  window.location.href =
+  "index.html";
+
 }
 
-// ── Registro de venta en tiempo real ─────────────────────────
-async function registrarVenta(producto, precio, cantidad) {
-  const totalVenta = precio * cantidad;
-  try {
-    await supabasePost('ventas_realtime', {
-      stand: 'merch',
-      producto: producto,
-      precio_unitario: precio,
-      cantidad: cantidad,
-      total: totalVenta
-    });
-    console.log('✅ Venta registrada en Supabase');
-  } catch (err) {
-    console.error('❌ Error al registrar venta en Supabase:', err);
-  }
-}
-// ─────────────────────────────────────────────────────────────
-
-const RESET_PASSWORD  = '1178';
-const REMOVE_PASSWORD = '1914';
-const PAGO_PASSWORD   = '1824';
+const RESET_PASSWORD = "1178";
+const REMOVE_PASSWORD = "1914";
+const PAGADO_PASSWORD = "1824";
+const CANCELAR_PASSWORD = "1814";
 
 let total = 0;
-const counts = { Tablitas: 0, Sticker: 0, Poster: 0, Origami: 0, Dibujo: 0 };
+
+const counts = {
+
+  Tablitas: 0,
+  Sticker: 0,
+  Poster: 0,
+  Origami: 0,
+  Dibujo: 0
+
+};
+
 let pendingSales = [];
-let pendingIndexActivo = null;
 
-// ── Modales ──────────────────────────────────────────────────
-function cerrarModal(id) {
-  document.getElementById(id).classList.add('hidden');
-  if (id === 'modalCancelar') document.getElementById('cancelPassword').value = '';
-  pendingIndexActivo = null;
-}
+async function addSale(product, price){
 
-function abrirModalPago(index) {
-  const item = pendingSales[index];
-  pendingIndexActivo = index;
-  document.getElementById('modalPagoInfo').innerText =
-    `${item.product} — ${item.client} ($${item.price * item.quantity})`;
-  document.getElementById('modalPago').classList.remove('hidden');
-}
+  counts[product]++;
 
-function confirmarPago() {
-  if (pendingIndexActivo === null) return;
-  const pending = pendingSales[pendingIndexActivo];
-  counts[pending.product] = (counts[pending.product] || 0) + Number(pending.quantity);
-  total += Number(pending.price) * Number(pending.quantity);
-  
-  // ── NUEVO: Registrar venta del pendiente en Supabase
-  registrarVenta(pending.product, pending.price, pending.quantity);
+  total += price;
 
-  pendingSales.splice(pendingIndexActivo, 1);
-  cerrarModal('modalPago');
   updateUI();
-  renderPending();
+
   saveData();
+
+  const { error } = await supabaseClient
+
+  .from("ventas")
+
+  .insert([{
+
+    usuario: usuario.usuario,
+
+    stand: "merch",
+
+    producto: product,
+
+    cantidad: 1,
+
+    precio: price,
+
+    total: price,
+
+    tipo: "venta"
+
+  }]);
+
+  if(error){
+
+    console.log(error);
+
+    alert(
+      "Error guardando venta"
+    );
+
+  }
+
 }
 
-function abrirModalCancelar(index) {
-  const item = pendingSales[index];
-  pendingIndexActivo = index;
-  document.getElementById('modalCancelarInfo').innerText =
-    `${item.product} — ${item.client}`;
-  document.getElementById('cancelPassword').value = '';
-  document.getElementById('modalCancelar').classList.remove('hidden');
-}
+function removeSale(product, price){
 
-function confirmarCancelar() {
-  const password = document.getElementById('cancelPassword').value;
-  if (password !== REMOVE_PASSWORD) {
-    alert('Contraseña incorrecta');
-    document.getElementById('cancelPassword').value = '';
+  const password = prompt(
+    "Contraseña para restar:"
+  );
+
+  if(password !== REMOVE_PASSWORD){
+
+    alert("Contraseña incorrecta");
+
     return;
   }
-  pendingSales.splice(pendingIndexActivo, 1);
-  cerrarModal('modalCancelar');
-  renderPending();
-  saveData();
-}
-// ─────────────────────────────────────────────────────────────
 
-function addSale(product, price) {
-  counts[product]++;
-  total += price;
-  updateUI();
-  saveData();
-  // ── NUEVO: Enviar venta individual a Supabase
-  registrarVenta(product, price, 1);
-}
+  if(counts[product] <= 0) return;
 
-function removeSale(product, price) {
-  const password = prompt('Contraseña para restar:');
-  if (password !== REMOVE_PASSWORD) { alert('Contraseña incorrecta'); return; }
-  if (counts[product] <= 0) return;
   counts[product]--;
+
   total -= price;
+
   updateUI();
+
   saveData();
 }
 
-function addPending(product, price) {
-  const password = prompt('Contraseña para registrar pendiente:');
-  if (password !== PAGO_PASSWORD) { alert('Contraseña incorrecta'); return; }
-  const client = prompt('Nombre del cliente:');
-  if (!client) return;
-  const quantity = parseInt(prompt('Cantidad:'));
-  if (!quantity || quantity <= 0) return;
-  pendingSales.push({ product, price, client, quantity });
-  renderPending();
-  saveData();
-}
+function addPending(product, price){
 
-function updateUI() {
-  document.getElementById('tablitas').innerText = counts.Tablitas;
-  document.getElementById('sticker').innerText  = counts.Sticker;
-  document.getElementById('poster').innerText   = counts.Poster;
-  document.getElementById('origami').innerText  = counts.Origami;
-  document.getElementById('dibujo').innerText   = counts.Dibujo;
-  document.getElementById('total').innerText    = total;
-}
+  const client = prompt(
+    "Nombre del cliente:"
+  );
 
-function renderPending() {
-  const container = document.getElementById('pendingList');
-  container.innerHTML = '';
-  pendingSales.forEach((item, index) => {
-    container.innerHTML += `
-      <div class="bg-[#FFF4F4] border-l-8 border-[#C11111] p-5 rounded-3xl flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
-        <div>
-          <div class="font-black text-xl md:text-2xl">${item.product}</div>
-          <div class="mt-1">Cliente: <strong>${item.client}</strong></div>
-          <div>Cantidad: ${item.quantity}</div>
-          <div class="font-bold text-[#8C0D11]">Debe: $${item.price * item.quantity}</div>
-        </div>
-        <div class="flex gap-2 w-full md:w-auto">
-          <button onclick="abrirModalPago(${index})" class="bg-[#363334] text-white flex-1 py-4 px-6 rounded-2xl text-lg font-bold">Pagado</button>
-          <button onclick="abrirModalCancelar(${index})" class="bg-[#8C0D11] text-white flex-1 py-4 px-6 rounded-2xl text-lg font-bold">Cancelar</button>
-        </div>
-      </div>`;
+  if(!client) return;
+
+  const quantity = parseInt(
+
+    prompt("Cantidad:")
+
+  );
+
+  if(!quantity || quantity <= 0) return;
+
+  pendingSales.push({
+
+    product,
+    price,
+    client,
+    quantity
+
   });
+
+  renderPending();
+
+  saveData();
 }
 
-function saveData() {
-  localStorage.setItem('merchPOS', JSON.stringify({ counts, total, pendingSales }));
-}
+function removePending(index){
 
-function loadData() {
-  const data = JSON.parse(localStorage.getItem('merchPOS'));
-  if (!data) return;
-  Object.assign(counts, data.counts);
-  total = data.total || 0;
-  pendingSales = data.pendingSales || [];
+  const pending =
+    pendingSales[index];
+
+  if(!counts[pending.product]){
+
+    counts[pending.product] = 0;
+
+  }
+
+  counts[pending.product] +=
+    Number(pending.quantity);
+
+  total +=
+    Number(pending.price) *
+    Number(pending.quantity);
+
+  pendingSales.splice(index, 1);
+
   updateUI();
+
+  renderPending();
+
+  saveData();
+}
+
+function updateUI(){
+
+  document.getElementById('tablitas').innerText =
+    counts.Tablitas;
+
+  document.getElementById('sticker').innerText =
+    counts.Sticker;
+
+  document.getElementById('poster').innerText =
+    counts.Poster;
+
+  document.getElementById('origami').innerText =
+    counts.Origami;
+
+  document.getElementById('dibujo').innerText =
+    counts.Dibujo;
+
+  document.getElementById('total').innerText =
+    total;
+}
+
+function renderPending(){
+
+  const container =
+    document.getElementById('pendingList');
+
+  container.innerHTML = '';
+
+  pendingSales.forEach((item, index) => {
+
+    container.innerHTML += `
+
+      <div class="bg-[#FFF4F4] border-l-8 border-[#C11111] p-5 rounded-3xl flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+
+        <div>
+
+          <div class="font-black text-xl md:text-2xl">
+
+            ${item.product}
+
+          </div>
+
+          <div class="mt-1">
+
+            Cliente:
+            <strong>${item.client}</strong>
+
+          </div>
+
+          <div>
+
+            Cantidad:
+            ${item.quantity}
+
+          </div>
+
+          <div class="font-bold text-[#8C0D11]">
+
+            Debe:
+            $${item.price * item.quantity}
+
+          </div>
+
+        </div>
+
+        <button
+
+          onclick="removePending(${index})"
+
+          class="bg-[#363334] text-white w-full md:w-auto py-4 px-6 rounded-2xl text-lg font-bold">
+
+          Pagó
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+function saveData(){
+
+  localStorage.setItem(
+
+    'merchPOS',
+
+    JSON.stringify({
+
+      counts,
+      total,
+      pendingSales
+
+    })
+
+  );
+}
+
+function loadData(){
+
+  const data = JSON.parse(
+
+    localStorage.getItem(
+      'merchPOS'
+    )
+
+  );
+
+  if(!data) return;
+
+  Object.assign(
+    counts,
+    data.counts
+  );
+
+  total =
+    data.total || 0;
+
+  pendingSales =
+    data.pendingSales || [];
+
+  updateUI();
+
   renderPending();
 }
 
-async function enviarASupabase() {
-  try {
-    const [sesion] = await supabasePost('sesiones', { stand: 'merch', total });
-    const sesionId = sesion.id;
-    const precios = { Tablitas: 40, Sticker: 5, Poster: 20, Origami: 5, Dibujo: 5 };
-    const detalles = Object.entries(counts)
-      .filter(([_, cant]) => cant > 0)
-      .map(([producto, cantidad]) => ({ sesion_id: sesionId, producto, cantidad, subtotal: precios[producto] * cantidad }));
-    if (detalles.length > 0) await supabasePost('ventas_detalle', detalles);
-    if (pendingSales.length > 0) {
-      await supabasePost('pendientes_sin_pagar', pendingSales.map(p => ({
-        sesion_id: sesionId, cliente: p.client, producto: p.product,
-        cantidad: p.quantity, total: p.price * p.quantity
-      })));
-    }
-    console.log('✅ Datos enviados a Supabase');
-  } catch (err) {
-    console.error('❌ Error Supabase:', err);
-    alert('Error al guardar en la base de datos. Los datos locales sí se reiniciaron.');
-  }
-}
+function resetSales(){
 
-async function resetSales() {
-  const password = prompt('Contraseña para reiniciar:');
-  if (password !== RESET_PASSWORD) { alert('Contraseña incorrecta'); return; }
-  await enviarASupabase();
-  localStorage.removeItem('merchPOS');
+  const password = prompt(
+    "Contraseña para reiniciar:"
+  );
+
+  if(password !== RESET_PASSWORD){
+
+    alert("Contraseña incorrecta");
+
+    return;
+  }
+
+  localStorage.removeItem(
+    'merchPOS'
+  );
+
   location.reload();
 }
 
 loadData();
+
 </script>
 
 </body>
